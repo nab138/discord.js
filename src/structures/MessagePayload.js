@@ -121,7 +121,6 @@ class MessagePayload {
    * @returns {MessagePayload}
    */
   resolveData() {
-    console.log(typeof this.options)
     if (this.data) return this;
     const isInteraction = this.isInteraction;
     const isWebhook = this.isWebhook;
