@@ -121,8 +121,8 @@ class MessagePayload {
    * @returns {MessagePayload}
    */
   resolveData() {
+    console.log(this.options instanceof MessageEmbed)
     if (this.data) return this;
-    console.log(this.options)
     const isInteraction = this.isInteraction;
     const isWebhook = this.isWebhook;
 
