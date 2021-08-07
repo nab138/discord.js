@@ -181,7 +181,7 @@ class MessagePayload {
       content,
       tts,
       nonce,
-      embeds: typeof this.options === 'object' && this.options.content === null ? [ this.options ] : null,
+      embeds: typeof this.options === 'object' && this.options.content ? [ this.options ] : null,
       components,
       username,
       avatar_url: avatarURL,
