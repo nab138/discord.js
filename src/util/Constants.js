@@ -49,8 +49,10 @@ exports.Endpoints = {
         if (dynamic) format = hash.startsWith('a_') ? 'gif' : format;
         return makeImageUrl(`${root}/avatars/${userId}/${hash}`, { format, size });
       },
-      Banner: (guildId, hash, format = 'webp', size) =>
-        makeImageUrl(`${root}/banners/${guildId}/${hash}`, { format, size }),
+      Banner: (id, hash, format = 'webp', size, dynamic = false) => {
+        if (dynamic) format = hash.startsWith('a_') ? 'gif' : format;
+        return makeImageUrl(`${root}/banners/${id}/${hash}`, { format, size });
+      },
       Icon: (guildId, hash, format = 'webp', size, dynamic = false) => {
         if (dynamic) format = hash.startsWith('a_') ? 'gif' : format;
         return makeImageUrl(`${root}/icons/${guildId}/${hash}`, { format, size });
@@ -636,6 +638,7 @@ exports.VerificationLevels = createEnum(['NONE', 'LOW', 'MEDIUM', 'HIGH', 'VERY_
  * * MAXIMUM_NON_GUILD_MEMBERS_BANS
  * * MAXIMUM_BAN_FETCHES
  * * MAXIMUM_NUMBER_OF_STICKERS_REACHED
+ * * MAXIMUM_PRUNE_REQUESTS
  * * UNAUTHORIZED
  * * ACCOUNT_VERIFICATION_REQUIRED
  * * DIRECT_MESSAGES_TOO_FAST
@@ -764,6 +767,7 @@ exports.APIErrors = {
   MAXIMUM_NON_GUILD_MEMBERS_BANS: 30035,
   MAXIMUM_BAN_FETCHES: 30037,
   MAXIMUM_NUMBER_OF_STICKERS_REACHED: 30039,
+  MAXIMUM_PRUNE_REQUESTS: 30040,
   UNAUTHORIZED: 40001,
   ACCOUNT_VERIFICATION_REQUIRED: 40002,
   DIRECT_MESSAGES_TOO_FAST: 40003,
@@ -893,6 +897,7 @@ exports.OverwriteTypes = createEnum(['role', 'member']);
  * * USER
  * * MESSAGE
  * @typedef {string} ApplicationCommandType
+ * @see {@link https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types}
  */
 exports.ApplicationCommandTypes = createEnum([null, 'CHAT_INPUT', 'USER', 'MESSAGE']);
 
@@ -940,7 +945,7 @@ exports.ApplicationCommandPermissionTypes = createEnum([null, 'ROLE', 'USER']);
  * * APPLICATION_COMMAND
  * * MESSAGE_COMPONENT
  * @typedef {string} InteractionType
- * @see {@link https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-request-type}
+ * @see {@link https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-type}
  */
 exports.InteractionTypes = createEnum([null, 'PING', 'APPLICATION_COMMAND', 'MESSAGE_COMPONENT']);
 

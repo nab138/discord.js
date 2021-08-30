@@ -70,7 +70,7 @@ class Util extends null {
    * @returns {string[]}
    */
   static splitMessage(text, { maxLength = 2000, char = '\n', prepend = '', append = '' } = {}) {
-    text = Util.verifyString(text, RangeError, 'MESSAGE_CONTENT_TYPE', false);
+    text = Util.verifyString(text);
     if (text.length <= maxLength) return [text];
     let splitText = [text];
     if (Array.isArray(char)) {
@@ -583,7 +583,7 @@ class Util extends null {
   /**
    * The content to have all mentions replaced by the equivalent text.
    * @param {string} str The string to be converted
-   * @param {Channel} channel The channel the string was sent in
+   * @param {TextBasedChannels} channel The channel the string was sent in
    * @returns {string}
    */
   static cleanContent(str, channel) {
