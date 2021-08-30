@@ -15,6 +15,9 @@
 
 ## About
 
+This fork is a fork that restores the normal embed functionality, allowing you to use `channel.send(embed)`
+it also uses the message event as the emiited event so no more messageCreate
+Note: This works, but not if you want to send buttons and embeds in the same message. This is because `channel.send({embeds: [embed]})` doesnt work in this fork so `channel.send({embeds: [embed], components:[row]})` doesnt work either. 
 discord.js is a powerful [Node.js](https://nodejs.org) module that allows you to easily interact with the
 [Discord API](https://discord.com/developers/docs/intro).
 
